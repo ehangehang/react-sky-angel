@@ -1,14 +1,14 @@
 import './styles/StylesWelcome.css';
 import React from "react";
 
-function Welcome() {
+function Welcome({playHandler}) {
     return (
         <div className="child-body">
             <h1>
-                Welcome to Sky Angel
+                Sky Angel
             </h1>
             <p>Avoid the birds to score!</p>
-            <button>Start Game</button>
+            <button onClick={playHandler}>Start Game</button>
         </div>
     );
 }
