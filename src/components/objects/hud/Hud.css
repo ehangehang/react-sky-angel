@@ -1,0 +1,18 @@
+.hud {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    margin: 0 30px 0 30px;
+    display: flex;
+}
+
+.hud-score {
+    color: black;
+    text-shadow: 2px 2px 4px grey;
+}
+
+.hud-time {
+    margin-left: 50px;
+    color: black;
+    text-shadow: 2px 2px 4px grey;
+}
