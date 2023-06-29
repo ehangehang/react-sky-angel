@@ -1,3 +1,5 @@
 .bird {
     height: 70px;
+    right: 0;
+    position: absolute;
 }
