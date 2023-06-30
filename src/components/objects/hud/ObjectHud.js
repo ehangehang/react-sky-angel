@@ -3,7 +3,7 @@ import './Hud.css';
 import Timer from "react-timer-wrapper";
 import Timecode from "react-timecode";
 
-function Hud() {
+function Hud({isColliding}) {
     const [time, setTime] = useState(0);
     const [start, setStart] = useState(false);
 
@@ -43,8 +43,24 @@ function Hud() {
         }
     }, [start]);
 
+    useEffect(() => {
+        if (isColliding) {
+            setStart(false);
+        }
+    });
+
     return (
         <div className="hud hud-time">
+            <button onClick={
+                () => {
+                    if (start) {
+                        setStart(false);
+                    } else {
+                        setStart(true);
+                    }
+                    console.log(time);
+                }
+            }>stop timer</button>
             <Timer active={start} duration={null}>
                 <Timecode time={time} format="s.SS" prefix="Time: " postfix="s"/>
             </Timer>
