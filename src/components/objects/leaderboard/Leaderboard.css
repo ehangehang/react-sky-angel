@@ -1,0 +1,43 @@
+.lb-board {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: calc(1024px - 80px);
+    margin: 30px;
+    padding: 10px;
+    background-color: lightgrey;
+    box-shadow: -6px 0 0 0 black, 6px 0 0 0 black, 0 -6px 0 0 black, 0 6px 0 0 black;
+}
+
+.lb-board:before,
+.lb-board:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    box-sizing: content-box;
+}
+
+.lb-board:before {
+    top: -6px;
+    left: 0;
+    border-top: 6px black solid;
+    border-bottom: 6px black solid;
+}
+
+.lb-board:after {
+    left: -6px;
+    top: 0;
+    border-left: 6px black solid;
+    border-right: 6px black solid;
+}
+
+.lb-board-name {
+    text-align: start;
+    left: 30px;
+}
+
+.lb-board-score {
+    text-align: end;
+    right: 30px;
+}

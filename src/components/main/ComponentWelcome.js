@@ -1,7 +1,7 @@
 import './styles/StylesWelcome.css';
 import React, { useState, useEffect } from "react";
 
-function Welcome({playHandler}) {
+function Welcome({playHandler, leaderboardHandler}) {
     const [name, setName] = useState("");
 
     useEffect(() => {
@@ -22,6 +22,10 @@ function Welcome({playHandler}) {
         playHandler();
     };
 
+    const buttonLeaderboard = () => {
+        leaderboardHandler();
+    }
+
     return (
         <div className="child-body">
             <h1>
@@ -30,6 +34,7 @@ function Welcome({playHandler}) {
             <p>Avoid the birds to score!</p>
             <input type="text" className="eightbit-input" />
             <a onClick={buttonStart} className="eightbit-btn">Start Game</a>
+            <a onClick={buttonLeaderboard} className="eightbit-btn-small">Leaderboard</a>
         </div>
     );
 }
