@@ -3,18 +3,15 @@ import Plane from "../objects/plane/ObjectPlane";
 import HUD from "../objects/hud/ObjectHud";
 import Bird from "../objects/bird/ObjectBird";
 
-function Game() {
+function Game({setPlayOver}) {
     const [isColliding, setIsColliding] = useState(false);
-    const planeRef = useRef(null);
-    const birdRef = useRef(null);
 
     useEffect (() => {
         const checkCollision = () => {
-            // const plane = planeRef.current;
-            // const bird = birdRef.current;
-
             const plane = document.getElementById("plane");
             const bird = document.getElementById("bird");
+
+            console.log(window.getComputedStyle(plane).transform);
             
             if (plane && bird) {
                 const planeRect = plane.getBoundingClientRect();
@@ -22,10 +19,11 @@ function Game() {
 
                 if (
                     planeRect.top < birdRect.bottom &&
-                    planeRect.bottom > birdRect.top &&
                     planeRect.right > birdRect.left &&
-                    planeRect.left < birdRect.right
+                    planeRect.left < birdRect.right &&
+                    planeRect.bottom > birdRect.top
                 ) {
+                    console.log("collision");
                     return true;
                 }
             }
@@ -34,20 +32,16 @@ function Game() {
         };
 
         const handleCollision = () => {
+            const collision = checkCollision();
             setIsColliding(checkCollision());
 
-            if (checkCollision()) {
-                console.log("collision");
+            if (collision) {
+                setPlayOver(true);
             }
         };
 
         const interval = setInterval(() => {
-            const collision = checkCollision();
-            setIsColliding(collision);
-            if (collision) {
-              console.log("Collision detected");
-              clearInterval(interval);
-            }
+            handleCollision();
           }, 100);
       
           document.addEventListener("keydown", handleCollision);
@@ -60,8 +54,8 @@ function Game() {
 
     return (
         <div>
-            <Plane ref={planeRef} id="plane" />
-            <Bird ref={birdRef} id="bird" />
+            <Plane id="plane" />
+            <Bird id="bird" />
             <HUD isColliding={isColliding} />
         </div>
     );

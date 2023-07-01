@@ -33,6 +33,7 @@ function Hud({isColliding}) {
             interval = setInterval(() => {
                 setTime((prevTime) => prevTime + 10);
             }, 10);
+            console.log(time);
         } else {
             clearInterval(interval);
         }
@@ -45,22 +46,13 @@ function Hud({isColliding}) {
 
     useEffect(() => {
         if (isColliding) {
+            localStorage.setItem("score", JSON.stringify(time));
             setStart(false);
         }
-    });
+    }, [isColliding]);
 
     return (
         <div className="hud hud-time">
-            <button onClick={
-                () => {
-                    if (start) {
-                        setStart(false);
-                    } else {
-                        setStart(true);
-                    }
-                    console.log(time);
-                }
-            }>stop timer</button>
             <Timer active={start} duration={null}>
                 <Timecode time={time} format="s.SS" prefix="Time: " postfix="s"/>
             </Timer>

@@ -13,8 +13,8 @@ function App() {
     setPlay(true);
   }
 
-  const endGame = () => {
-    setPlayOver(true);
+  const endGame = (isPlayOver) => {
+    setPlayOver(isPlayOver);
   }
 
   return (
@@ -22,8 +22,12 @@ function App() {
       <div className="container-main">
         <div className="container-child">
             <Cloud/>
-            {play ? <Game/> : <Welcome playHandler={startGame}/>}
-            {playOver ? <End/> : null}
+            {play ? 
+            <>
+              {playOver ? <End/> : <Game setPlayOver={endGame}/> } 
+            </>
+            : <Welcome playHandler={startGame}/>}
+            {/* {playOver ? <End/> : null} */}
         </div>
       </div>
     </>

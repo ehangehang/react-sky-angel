@@ -6,7 +6,11 @@ function Plane() {
     const [x, setX] = useState(-300);
     const [y, setY] = useState(0);
 
+    // const planeElement = document.getElementById("plane");
+    // const planePosition = planeElement?.getBoundingClientRect();
+
     useEffect(() => {
+        // console.log(planePosition);
         const handleEvent = (e) => {
             const step = 10;
                 switch (e.key) {
@@ -41,7 +45,7 @@ function Plane() {
     });
     
     return(
-        <img src={plane} alt="plane" className="plane" style={{
+        <img id="plane" src={plane} alt="plane" className="plane" style={{
             top: y,
             left: x,
         }} />

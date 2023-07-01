@@ -8,7 +8,11 @@ function Bird() {
     const containerWidth = 1024;
     const speed = 1;
 
+    // const birdElement = document.getElementById("bird");
+    // const birdPosition = birdElement?.getBoundingClientRect();
+
     useEffect(() => {
+        // console.log(birdPosition);
         const timer = setInterval(() => {
             setPositionX((prevPositionX) => 
             (prevPositionX + speed) % containerWidth);
@@ -24,7 +28,7 @@ function Bird() {
     });
 
     return (
-        <img src={bird} alt="bird" className="bird" style={{right: positionX, top: positionY}}/>
+        <img id="bird" src={bird} alt="bird" className="bird" style={{right: positionX, top: positionY}}/>
     );
 }
 
