@@ -3,15 +3,13 @@ import Plane from "../objects/plane/ObjectPlane";
 import HUD from "../objects/hud/ObjectHud";
 import Bird from "../objects/bird/ObjectBird";
 
-function Game({setPlayOver}) {
+function Game({playOverHandler}) {
     const [isColliding, setIsColliding] = useState(false);
 
     useEffect (() => {
         const checkCollision = () => {
             const plane = document.getElementById("plane");
             const bird = document.getElementById("bird");
-
-            console.log(window.getComputedStyle(plane).transform);
             
             if (plane && bird) {
                 const planeRect = plane.getBoundingClientRect();
@@ -23,7 +21,6 @@ function Game({setPlayOver}) {
                     planeRect.left < birdRect.right &&
                     planeRect.bottom > birdRect.top
                 ) {
-                    console.log("collision");
                     return true;
                 }
             }
@@ -36,7 +33,7 @@ function Game({setPlayOver}) {
             setIsColliding(checkCollision());
 
             if (collision) {
-                setPlayOver(true);
+                playOverHandler();
             }
         };
 

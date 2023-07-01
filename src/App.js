@@ -9,12 +9,20 @@ function App() {
   const [play, setPlay] = useState(false);
   const [playOver, setPlayOver] = useState(false);
 
-  const startGame = () => {
-    setPlay(true);
+  const setPlayGame = () => {
+    if (play) {
+      setPlay(false);
+    } else {
+      setPlay(true);
+    }
   }
 
-  const endGame = (isPlayOver) => {
-    setPlayOver(isPlayOver);
+  const setEndGame = () => {
+    if (playOver) {
+      setPlayOver(false);
+    } else {
+      setPlayOver(true);
+    }
   }
 
   return (
@@ -24,9 +32,9 @@ function App() {
             <Cloud/>
             {play ? 
             <>
-              {playOver ? <End/> : <Game setPlayOver={endGame}/> } 
+              {playOver ? <End playHandler={setPlayGame} playOverHandler={setEndGame} /> : <Game playOverHandler={setEndGame}/> } 
             </>
-            : <Welcome playHandler={startGame}/>}
+            : <Welcome playHandler={setPlayGame}/>}
             {/* {playOver ? <End/> : null} */}
         </div>
       </div>

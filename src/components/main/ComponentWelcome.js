@@ -17,7 +17,7 @@ function Welcome({playHandler}) {
         }
     });
 
-    const button = () => {
+    const buttonStart = () => {
         localStorage.setItem("name", JSON.stringify(name));
         playHandler();
     };
@@ -29,7 +29,7 @@ function Welcome({playHandler}) {
             </h1>
             <p>Avoid the birds to score!</p>
             <input type="text" className="eightbit-input" />
-            <a onClick={button} className="eightbit-btn">Start Game</a>
+            <a onClick={buttonStart} className="eightbit-btn">Start Game</a>
         </div>
     );
 }
