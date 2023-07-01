@@ -1,12 +1,17 @@
 import React from "react";
 import './styles/StylesEnd.css';
+import axios from "axios";
 
 function End({playHandler, playOverHandler}) {
     const name = JSON.parse(localStorage.getItem("name"));
     const score = JSON.parse(localStorage.getItem("score"));
 
     const buttonRestart = () => {
-        console.log({...localStorage});
+        axios.post("http://localhost:8000/api/api-data", {name, score})
+            .then(res => {
+                console.log(res);
+                console.log(res.data);
+            });
         localStorage.clear();
         playHandler();
         playOverHandler();
